@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Web Alumnos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container mt-4 text-center">
+        <div class="card" id="card">
+            <div class="card-header bg-dark text-white">
+                Agregar Alumno
+            </div>
+            <div class="card-body" id="body">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <form>
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <label for="nombre" class="form-label">Nombre:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" id="nombre" required>
+                                </div>
+                            </div>
+                            <div class="row align-items-center mt-2">
+                                <div class="col-4">
+                                    <label for="telefono" class="form-label">Telefono:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="input" class="form-control" id="telefono" required>
+                                </div>
+                            </div>
+                            <div class="row align-items-center mt-2">
+                                <div class="col-4">
+                                    <label for="email" class="form-label">Email:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="row align-items-center mt-2">
+                                <div class="col-4">
+                                    <label for="dni" class="form-label">DNI:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" id="dni" required>
+                                </div>
+                            </div>
+                            <div class="row align-items-center mt-2">
+                                <div class="col-4">
+                                    <label for="fecha" class="form-label">Fecha de Nacimiento:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="date" class="form-control" id="fecha" required>
+                                </div>
+                            </div>
+                            <div class="row align-items-center mt-2">
+                                <div class="col-4">
+                                    <label for="legajo" class="form-label">Numero de Legajo:</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" id="legajo" required>
+                                </div>
+                            </div>
+                            <div class="row align-items-center mt-2">
+                                <div class="col-4">
+                                    <label for="curso" class="form-label">Curso:</label>
+                                </div>
+                                <div class="col-8">
+                                    <select class="form-select" id="cursos" aria-label="Default select example">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger d-none mt-2" role="alert" id="alert">
+
+                            </div>
+                            <button type="button" onclick="crear()" class="btn btn-success mt-4">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group mt-2" role="group" aria-label="Basic mixed styles example" id="menu">
+            <button type="button" class="btn btn-primary m-2" onclick="buscar()">Buscar Alumno</button>
+            <button type="button" class="btn btn-info m-2" onclick="lista()">Lista de Alumnos</button>
+            <button type="button" onclick="cerrar()" class="btn btn-danger m-2">Salir</button>
+        </div>
+
+        <div class="container d-none" id="lista">
+            <div class="row">
+                <div class="col">
+                </div>
+                <table class="table table-bordered table-striped table-hover sortable text-center" id="tablaprueba">
+                    <thead>
+                        <tr class="bg-dark text-white">
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col text-center">
+                <button type="button" onclick="volver()" class="btn btn-danger m-2">Cerrar</button>
+            </div>
+        </div>
+        <div class="container d-none" id="buscar">
+            <div class="row">
+                <div class="col-3 offset-3">
+                    <div class="form-group">
+                        <label for="col">Porque deseas buscar:</label>
+                        <select class="form-select" id="select" aria-label="Default select example">
+                            <option value="0">ID</option>
+                            <option value="1">Nombre</option>
+                            <option value="2">Telefono</option>
+                            <option value="3">Email</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="input">Ingrese el valor:</label>
+                        <input type="text" class="form-control" id="input">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-primary" id="buscar" onclick="buscarUsuario()">Buscar</button>
+                    <button type="button" onclick="volver()" class="btn btn-danger m-2">Cerrar</button>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-6 offset-3">
+                    <div id="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-center p-2" id="titulo"></h5>
+                            <h6 class="card-subtitle mb-2 " id="id"></h6>
+                            <h6 class="card-subtitle mb-2 " id="telefono"></h6>
+                            <h6 class="card-subtitle mb-2 " id="email"></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script src="alumnos.js"></script>
+
+
+</body>
+
+</html>
